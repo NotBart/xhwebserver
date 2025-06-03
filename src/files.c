@@ -220,6 +220,25 @@ int evaluateCgi(char *path, int fd, struct requestBodyParseResult request, char 
             setenv(currstr, request.headers[i].v, 1);
         }
 
+        for (int i = 0; i < request.querycount; i++) {
+            x = 6;
+            memset(currstr, '\0', MAX_KEY_SIZE);
+            strcpy(currstr, "QUERY_");
+            for (int j = 0; j < MAX_KEY_SIZE; j++) {
+                char currchar = request.queries[i].k[j];
+                if (currchar == '-') {
+                    currstr[x++] = '_';
+                } else if (currchar >= 'a' && currchar <= 'z') {
+                    currstr[x++] = currchar - 32; 
+                } else if ((currchar >= 'A' && currchar <= 'Z') || (currchar >= '0' && currchar <= '9') || currchar == '_') {
+                    currstr[x++] = currchar;
+                } else if (currchar == '\0') {
+                    currstr[x] = '\0';
+                }
+            }
+            setenv(currstr, request.queries[i].v, 1);
+        }
+
         if (dup2(pipefd[1], STDOUT_FILENO) < 0) {
             exit(EXIT_FAILURE);
         }
