@@ -61,6 +61,8 @@ git clone https://github.com/NotBart/xhwebserver && cd xhwebserver/src && gcc -g
 | SCRIPT_NAME         | /test.cgi             |
 | REMOTE_ADDR         | ::ffff:192.168.68.102 |
 | HTTP_METHOD         | GET, POST, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH, ERR |
+| HEADER_key          | Header value          |
+| QUERY_key           | Query value           |
 
 ## TODO
 - Error checking EVERYWHERE
