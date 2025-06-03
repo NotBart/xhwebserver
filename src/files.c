@@ -203,7 +203,7 @@ int evaluateCgi(char *path, int fd, struct requestBodyParseResult request, char 
         char currstr[MAX_KEY_SIZE+8];
         for (int i = 0; i < request.headercount; i++) {
             x = 7;
-            memset(currstr, '\0', MAX_KEY_SIZE);
+            memset(currstr, '\0', MAX_KEY_SIZE+8);
             strcpy(currstr, "HEADER_");
             for (int j = 0; j < MAX_KEY_SIZE; j++) {
                 char currchar = request.headers[i].k[j];
@@ -222,7 +222,7 @@ int evaluateCgi(char *path, int fd, struct requestBodyParseResult request, char 
 
         for (int i = 0; i < request.querycount; i++) {
             x = 6;
-            memset(currstr, '\0', MAX_KEY_SIZE);
+            memset(currstr, '\0', MAX_KEY_SIZE+8);
             strcpy(currstr, "QUERY_");
             for (int j = 0; j < MAX_KEY_SIZE; j++) {
                 char currchar = request.queries[i].k[j];
