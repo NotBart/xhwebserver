@@ -15,6 +15,7 @@ ALSO REALLY INSECURE but it works!
 
 ## Building
 **EDIT options.h FIRST!!!!!!!!** Only touch WEB_ROOT, ERROR_ROOT, SERVER_BANNER, WEB_PORT
+
 Compile all *.c files together.
 ```bash
 git clone https://github.com/NotBart/xhwebserver && cd xhwebserver/src && gcc -g *.c -O2 -o ../server
