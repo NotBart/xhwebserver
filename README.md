@@ -69,4 +69,5 @@ git clone https://github.com/NotBart/xhwebserver && cd xhwebserver/src && gcc -g
 - Normal CGI support
 - Actually implement all HTTP methods
 - CLI
-- Idk make it better
+- Pass POST body to CGI
+- .....
