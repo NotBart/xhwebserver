@@ -52,6 +52,7 @@ git clone https://github.com/NotBart/xhwebserver && cd xhwebserver/src && gcc -g
 | .\*             | application/octet-stream             |
 
 ## CGI environment variables
+Note: Status header is not supported, instead print "HTTP/1.1 200 OK" (or your status) first
 | Key                 | Value                 |
 |---------------------|-----------------------|
 | SERVER_SOFTWARE     | xhWebServer/0.0.1     |
