@@ -2,7 +2,7 @@
 Filename: files.c
 Author: Bartoloměj Bičovský
 Purpose: handles files, cgi
-Version: 0.0.1
+Version: 0.0.1a
 */
 
 #include "files.h"
@@ -16,6 +16,7 @@ Version: 0.0.1
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 bool isPathValid(char *path, bool inwebroot) {
     if (strstr(path, "..")) {
@@ -256,7 +257,10 @@ int evaluateCgi(char *path, int fd, struct requestBodyParseResult request, char 
         char buffer[4096];
 
         while ((readbytes = read(pipefd[0], buffer, 4096)) > 0) {
-            write(fd, buffer, readbytes);
+            if (write(fd, buffer, readbytes) < 0) {
+                kill(subprocess, SIGKILL);
+                break;
+            }
         }
 
         close(pipefd[0]);
